@@ -2,93 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>My Dynamic Web-site</title>
+  <title>Dynamic Greeting</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
-      background: #f9f9f9;
+      padding: 40px;
     }
-    nav {
-      background: #333;
-      padding: 10px;
-    }
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-    .content {
-      padding: 20px;
-    }
-    section {
-      display: none;
-    }
-    section.active {
-      display: block;
-    }
-    #course-list {
-      margin-top: 10px;
-      padding-left: 20px;
-    }
-    input, button {
-      padding: 8px;
-      margin-top: 10px;
+    #greeting {
+      margin-top: 20px;
+      font-size: 1.5em;
+      color: darkgreen;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="#" onclick="showSection('home')">Home</a>
-    <a href="#" onclick="showSection('about')">About</a>
-    <a href="#" onclick="showSection('courses')">Courses</a>
-  </nav>
+  <h1>Welcome!!!</h1>
+  <p>Enter your name:</p>
 
-  <div class="content">
-    <section id="home" class="active">
-      <h1>Welcome to My Dynamic Site</h1>
-      <p>This is a simple interactive HTML page with multiple sections.</p>
-    </section>
+  <input type="text" id="nameInput" placeholder="Your name">
+  <button onclick="greetUser()">Submit</button>
 
-    <section id="about">
-      <h1>About</h1>
-      <p>This site demonstrates basic HTML, CSS, and JavaScript interactivity.</p>
-    </section>
-
-    <section id="courses">
-      <h1>Courses</h1>
-      <ul id="course-list">
-        <li>Math 101</li>
-        <li>Biology 201</li>
-      </ul>
-      <input type="text" id="course-input" placeholder="Enter course name">
-      <button onclick="addCourse()">Add Course</button>
-    </section>
-  </div>
+  <div id="greeting"></div>
 
   <script>
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(section => {
-        section.classList.remove('active');
-      });
-      document.getElementById(id).classList.add('active');
-    }
-
-    function addCourse() {
-      const input = document.getElementById('course-input');
-      const courseName = input.value.trim();
-      if (courseName) {
-        const li = document.createElement('li');
-        li.textContent = courseName;
-        document.getElementById('course-list').appendChild(li);
-        input.value = '';
+    function greetUser() {
+      const name = document.getElementById('nameInput').value;
+      const greetingDiv = document.getElementById('greeting');
+      
+      if (name.trim() !== "") {
+        greetingDiv.textContent = `Hello, ${name}! 👋`;
       } else {
-        alert("Please enter a course name.");
+        greetingDiv.textContent = "Please enter your name.";
       }
     }
   </script>
